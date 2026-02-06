@@ -157,7 +157,7 @@ const InkMesh = () => {
 const InkCanvas = () => {
     return (
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-            <Canvas camera={{ position: [0, 0, 1] }} dpr={[1, 2]}>
+            <Canvas camera={{ position: [0, 0, 1] }} dpr={[1, 1.5]}>
                 <InkMesh />
             </Canvas>
         </div>
