@@ -40,7 +40,7 @@ float noise(in vec2 st) {
 }
 
 // FBM (Fractal Brownian Motion)
-#define OCTAVES 6
+#define OCTAVES 4
 float fbm(in vec2 st) {
     float value = 0.0;
     float amplitude = 0.5;
