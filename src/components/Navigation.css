@@ -1,0 +1,56 @@
+.nav-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    mix-blend-mode: difference;
+    /* Ensures visibility over light/dark ink */
+    pointer-events: none;
+    /* Let clicks pass through if needed, but buttons need pointer-events auto */
+}
+
+.nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    pointer-events: auto;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    pointer-events: auto;
+}
+
+.nav-link {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 1.5rem;
+    }
+
+    .nav-menu {
+        display: none;
+        /* Hide menu for mobile for now, or use hamburger */
+    }
+}
