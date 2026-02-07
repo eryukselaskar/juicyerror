@@ -18,15 +18,16 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
-  overflow: hidden; /* Prevent scroll for the hero */
+  /* overflow: hidden; Removed to allow scroll */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* Keep 100vh for InkCanvas positioning context */
   position: relative;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -39,4 +40,25 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+}
+
+section {
+    padding: 6rem 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2; /* Above canvas */
+}
+
+/* Semi-transparent background for readability on sections other than Hero */
+section:not(:first-of-type) {
+    background: rgba(5, 5, 5, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+html {
+  scroll-behavior: smooth;
 }
