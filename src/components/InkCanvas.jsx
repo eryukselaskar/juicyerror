@@ -158,10 +158,14 @@ const InkMesh = () => {
     );
 };
 
+const CANVAS_CONTAINER_STYLE = { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 };
+const CAMERA_CONFIG = { position: [0, 0, 1] };
+const DPR_CONFIG = [1, 1.5];
+
 const InkCanvas = () => {
     return (
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-            <Canvas camera={{ position: [0, 0, 1] }} dpr={[1, 1.5]}>
+        <div style={CANVAS_CONTAINER_STYLE}>
+            <Canvas camera={CAMERA_CONFIG} dpr={DPR_CONFIG}>
                 <InkMesh />
             </Canvas>
         </div>
