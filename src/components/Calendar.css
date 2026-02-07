@@ -1,0 +1,174 @@
+.calendar-container {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-sans);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--color-text-primary);
+}
+
+.calendar-nav-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-text-primary);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calendar-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.calendar-weekday {
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+    color: var(--color-text-primary);
+    border: 1px solid transparent;
+}
+
+/* Available state */
+.calendar-day.available {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.calendar-day.available:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Booked state */
+.calendar-day.booked {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: transparent;
+    text-decoration: line-through;
+    color: var(--color-text-secondary);
+}
+
+/* Selected state */
+.calendar-day.selected {
+    background: var(--color-text-primary);
+    color: var(--color-bg);
+    font-weight: bold;
+    border-color: var(--color-text-primary);
+}
+
+.calendar-day.selected:hover {
+    background: var(--color-text-primary); /* Keep consistent on hover */
+}
+
+/* Empty filler days */
+.calendar-day.empty {
+    background: transparent;
+    cursor: default;
+    pointer-events: none;
+}
+
+.calendar-legend {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.legend-available {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.legend-booked {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.5;
+    position: relative;
+}
+.legend-booked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-text-secondary);
+}
+
+.calendar-helper-text {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .calendar-day {
+        font-size: 0.8rem;
+    }
+
+    .calendar-grid {
+        gap: 0.25rem;
+    }
+
+    .calendar-container {
+        padding: 0.75rem;
+    }
+}
