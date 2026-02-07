@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -120,6 +120,13 @@ const InkMesh = () => {
         []
     );
 
+    // Update resolution when size changes
+    useEffect(() => {
+        if (meshRef.current) {
+             meshRef.current.material.uniforms.uResolution.value.set(size.width, size.height);
+        }
+    }, [size.width, size.height]);
+
     // Update loop
     useFrame((state) => {
         const { clock } = state;
@@ -135,9 +142,6 @@ const InkMesh = () => {
 
             // Simple lerp for smoothness could go here, but uniforms update every frame is ok
             meshRef.current.material.uniforms.uMouse.value.set(targetX, targetY);
-
-            // Update resolution if window resized
-            meshRef.current.material.uniforms.uResolution.value.set(size.width, size.height);
         }
     });
 
