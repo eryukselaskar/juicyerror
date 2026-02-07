@@ -46,7 +46,6 @@ const ReservationModal = ({ isOpen, onClose }) => {
 
         // Mock submission
         setTimeout(() => {
-            console.log('Reservation Submitted:', formData);
             setIsSubmitting(false);
             setIsSuccess(true);
             setTimeout(() => {
