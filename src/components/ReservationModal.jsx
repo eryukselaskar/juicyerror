@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Calendar from './Calendar';
 import './ReservationModal.css';
 
 const ReservationModal = ({ isOpen, onClose }) => {
@@ -40,8 +41,21 @@ const ReservationModal = ({ isOpen, onClose }) => {
         }));
     };
 
+    const handleDateSelect = (dateStr) => {
+        setFormData(prev => ({
+            ...prev,
+            date: dateStr
+        }));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!formData.date) {
+            alert("Please select a date for your appointment.");
+            return;
+        }
+
         setIsSubmitting(true);
 
         // Mock submission
@@ -120,12 +134,18 @@ const ReservationModal = ({ isOpen, onClose }) => {
 
                             <div className="form-group">
                                 <label className="form-label">Preferred Date</label>
+                                <Calendar
+                                    selectedDate={formData.date}
+                                    onDateSelect={handleDateSelect}
+                                />
+                                {/* Hidden input to ensure required validation works if needed, though we handle it in handleSubmit */}
                                 <input
-                                    type="date"
+                                    type="text"
                                     name="date"
-                                    className="form-input"
                                     value={formData.date}
-                                    onChange={handleChange}
+                                    readOnly
+                                    required
+                                    style={{ position: 'absolute', opacity: 0, height: 0, width: 0 }}
                                 />
                             </div>
 
