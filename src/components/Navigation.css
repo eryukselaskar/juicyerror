@@ -7,11 +7,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
-    mix-blend-mode: difference;
-    /* Ensures visibility over light/dark ink */
+    z-index: 100;
+    /* mix-blend-mode removed from container to allow opaque mobile menu */
     pointer-events: none;
-    /* Let clicks pass through if needed, but buttons need pointer-events auto */
 }
 
 .nav-logo {
@@ -22,6 +20,9 @@
     color: var(--color-text-primary);
     text-transform: uppercase;
     pointer-events: auto;
+    z-index: 101;
+    cursor: pointer;
+    mix-blend-mode: difference;
 }
 
 .nav-menu {
@@ -38,10 +39,45 @@
     letter-spacing: 0.1em;
     opacity: 0.8;
     transition: opacity 0.3s ease;
+    mix-blend-mode: difference;
+    pointer-events: auto; /* Explicitly set to auto */
 }
 
 .nav-link:hover {
     opacity: 1;
+}
+
+/* Hamburger Menu Toggle */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 101;
+    mix-blend-mode: difference;
+}
+
+.nav-toggle .bar {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    transition: all 0.3s ease;
+}
+
+/* Hamburger Animation */
+.nav-toggle.open .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.nav-toggle .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
@@ -49,8 +85,32 @@
         padding: 1.5rem;
     }
 
+    .nav-toggle {
+        display: flex;
+    }
+
     .nav-menu {
-        display: none;
-        /* Hide menu for mobile for now, or use hamburger */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--color-bg);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 99;
+        gap: 2rem;
+    }
+
+    .nav-menu.open {
+        transform: translateY(0);
+    }
+
+    .nav-link {
+        font-size: 1.5rem;
     }
 }
