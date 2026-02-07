@@ -114,7 +114,7 @@ const InkMesh = () => {
         () => ({
             uTime: { value: 0 },
             uResolution: { value: new THREE.Vector2(size.width, size.height) },
-            uMouse: { value: new THREE.Vector2(0, 0) },
+            uMouse: { value: new THREE.Vector2(-999, -999) }, // Set mouse far off-screen
             uHoverState: { value: 0 }
         }),
         []
@@ -132,16 +132,7 @@ const InkMesh = () => {
         const { clock } = state;
         if (meshRef.current) {
             meshRef.current.material.uniforms.uTime.value = clock.getElapsedTime();
-
-            // Interpolate mouse position for smoothness
-            // Convert normalized device coords (-1 to 1) to UV space (0 to 1) roughly for shader
-            // Actually standardizing on screen ratio in shader, so passing raw 0-1 might be better
-            // But Three.js mouse is -1 to 1.
-            const targetX = (state.mouse.x + 1) / 2;
-            const targetY = (state.mouse.y + 1) / 2;
-
-            // Simple lerp for smoothness could go here, but uniforms update every frame is ok
-            meshRef.current.material.uniforms.uMouse.value.set(targetX, targetY);
+            // Mouse update removed to disable follow behavior
         }
     });
 
