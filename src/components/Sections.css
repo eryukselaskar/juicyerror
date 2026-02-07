@@ -50,12 +50,24 @@
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-.work-placeholder {
-    color: var(--color-text-secondary);
+.work-content {
+    text-align: center;
+    padding: 1rem;
+}
+
+.work-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-primary);
+}
+
+.work-category {
     font-family: var(--font-sans);
-    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
     text-transform: uppercase;
-    font-size: 0.8rem;
+    letter-spacing: 0.1em;
 }
 
 /* About Section */
